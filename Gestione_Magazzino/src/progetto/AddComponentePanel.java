@@ -1,5 +1,7 @@
 package progetto;
 //pepoooo
+//sarai pepo tu... non io!
+//entrambi pepi
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
