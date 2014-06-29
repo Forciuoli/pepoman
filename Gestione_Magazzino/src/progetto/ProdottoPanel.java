@@ -53,6 +53,7 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 	        
 	        //******SELEZIONO LA CELLA******
 	        table.setCellSelectionEnabled(true);
+	        table.setRowSorter(null);
 	        cell=table.getSelectionModel();
 	        cell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //MULTIPLE_INTERVAL_SELECTION
 	        cell.addListSelectionListener(new ListSelectionListener() {
@@ -93,7 +94,7 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 	        
 	        
 	        //Set the column sorting functionality on
-	        table.setAutoCreateRowSorter(true);
+	      //  table.setAutoCreateRowSorter(true);
 	       
 	        //Set the default editor for the Country column to be the combobox
 	        TableColumn nome = table.getColumnModel().getColumn(1);

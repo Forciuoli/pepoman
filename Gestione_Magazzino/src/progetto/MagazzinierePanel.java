@@ -45,10 +45,8 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	private JTable table1=new JTable(model1);	//modello di tabella x prodotto
 	TableModelCREAprod model2=new TableModelCREAprod();	//modello di tabella x creare prodotto
 	private JTable table2=new JTable(model2);	//modello di tabella x creare prodotto
-
-
+	
 	public MagazzinierePanel() throws Exception{
-		
 		model=new TableModelComp();		
 		setSize(1080, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
