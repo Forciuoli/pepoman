@@ -230,7 +230,7 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 			
 			
 					try {
-						new ProdottoPanel().setVisible(true);
+						new ProdottoPanel(this).setVisible(true);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

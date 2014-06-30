@@ -31,7 +31,7 @@ import javax.swing.DefaultCellEditor;
 	
 public class ProdottoPanel extends JFrame implements ActionListener{
 	private static GraphicsConfiguration guiFrame;
-	
+	 MagazzinierePanel fr;
      JPanel tablepanel=new JPanel();
      JPanel panel=new JPanel();  
      JPanel panel1=new JPanel();   
@@ -42,9 +42,10 @@ public class ProdottoPanel extends JFrame implements ActionListener{
  
      JButton ok=new JButton("ok");
      
-	    public ProdottoPanel() throws Exception
+	    public ProdottoPanel(MagazzinierePanel f) throws Exception
 	    {	
 	    	super(guiFrame);
+	    	fr=f;
 	        setTitle("Prodotto");
 	        setSize(1000,600);
 	      
@@ -148,6 +149,7 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 						    "inserimento corretto",
 						    JOptionPane.INFORMATION_MESSAGE);
 					dispose();
+					fr.m();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
