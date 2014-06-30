@@ -55,7 +55,12 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 		setResizable(true);
 		setLocationRelativeTo(null); //schermata al centro dello schermo
 		setTitle("Gestione Magazzino");
-		
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+		table1.setFont(new Font("Arial", Font.PLAIN, 15));
+		table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+		table2.setFont(new Font("Arial", Font.PLAIN, 15));
+		table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
 		scroll=new JScrollPane(table);
 		 table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 		 
@@ -170,6 +175,8 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}	//modello di tabella x componente
 			table1=new JTable(model1);	
+			table1.setFont(new Font("Arial", Font.PLAIN, 15));
+			table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
 			scroll1=new JScrollPane(table1);
 			table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll1);
@@ -201,7 +208,9 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}	//modello di tabella x componente
-			table=new JTable(model);	
+			table=new JTable(model);
+			table.setFont(new Font("Arial", Font.PLAIN, 15));
+			table.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
 			scroll=new JScrollPane(table);
 			table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll);
@@ -240,7 +249,9 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	//modello di tabella x componente
-		table=new JTable(model);	
+		table=new JTable(model);
+		table.setFont(new Font("Arial", Font.PLAIN, 15));
+		table.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
 		scroll=new JScrollPane(table);
 		table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 		panel1.add(scroll);
@@ -259,6 +270,8 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}	//modello di tabella x componente
 			table1=new JTable(model1);	
+			table1.setFont(new Font("Arial", Font.PLAIN, 15));
+			table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
 			scroll1=new JScrollPane(table1);
 			table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll1);
