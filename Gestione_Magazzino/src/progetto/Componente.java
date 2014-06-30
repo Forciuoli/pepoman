@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Componente implements Utilizzabile{
-	public Componente(String n, String d, int q){
+	public Componente(String n, String d, int q,String codice){
 		nome=n;
 		descrizione=d;
 		quantità=q;
+		cod=codice;
 		//this.id=id;
 	}
 	
@@ -25,21 +26,23 @@ public class Componente implements Utilizzabile{
 	public int getId(){
 		return id;
 	}
-	
-//controlla se la quantità del componente è >0 , in tal caso permette di usarlo altrimenti ritorna false
+	public String getCod() {
+		return cod;
+	}
+	//controlla se la quantità del componente è >0 , in tal caso permette di usarlo altrimenti ritorna false
 //verificare il funzionamento!
 	public boolean eUsabile() {
 		  
 		try {
-		      // this will load the MySQL driver, each DB has its own driver
-		      Class.forName("com.mysql.jdbc.Driver");
+		     // this will load the MySQL driver, each DB has its own driver
+		      Class.forName("org.sqlite.JDBC");
 		      // setup the connection with the DB.
 		      connect = DriverManager
-		          .getConnection("jdbc:mysql://localhost/magazzino?"+"user=root&password=");
+		          .getConnection("jdbc:sqlite:magazzino3.db");
 
 		      // statements allow to issue SQL queries to the database
 		      statement = connect.createStatement();
-		      statement.execute("select quantita from componenti where nome='"+ nome +"'");
+		      statement.execute("select quant from componenti where nome='"+ nome +"'");
 		      resultSet = statement.getResultSet();
 		      
 		      while (resultSet.next()) {
@@ -72,6 +75,7 @@ public class Componente implements Utilizzabile{
 	
 	private String nome;
 	private String descrizione;
+	private String cod;
 	private int quantità;
 	private int id;
 	private Connection connect;

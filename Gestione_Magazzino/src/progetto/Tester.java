@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class Tester {
 	public static void main(String[] args) throws Exception{
 			
-		 /*
 		
-		Connection c = null;
+		
+	/*	Connection c = null;
 	    Statement stmt = null;
 	    try {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:magazzino2.db");
+	      c = DriverManager.getConnection("jdbc:sqlite:magazzino3.db");
 	      System.out.println("Opened magazzino2.db database successfully");
 
 	      stmt = c.createStatement();
@@ -24,7 +24,8 @@ public class Tester {
 	                   "(id INTEGER PRIMARY KEY   AUTOINCREMENT," +
 	                   " nome           varchar(50)    NOT NULL, " + 
 	                   " descrizione    varchar(500)     NOT NULL, " + 
-	                   " quant        	int(20) " + 
+	                   " quant        	int(20), " + 
+	                   " cod_materiale  varchar(500)        NOT NULL" +
 	                   " )"; 
 	      stmt.executeUpdate(sql);
 	      stmt.close();
@@ -38,7 +39,7 @@ public class Tester {
 	    
 	    try {
 		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:magazzino2.db");
+		      c = DriverManager.getConnection("jdbc:sqlite:magazzino3.db");
 		      System.out.println("Opened magazzino2.db database successfully");
 
 		      stmt = c.createStatement();
@@ -56,9 +57,9 @@ public class Tester {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		      System.exit(0);
 		    }
-		    System.out.println("Table prodotti created successfully");
+		    System.out.println("Table prodotti created successfully");*/
 	   	
-		    */
+		   
 		    
 		MagazzinierePanel magazzinierePanel=new MagazzinierePanel();
 		magazzinierePanel.setVisible(true);

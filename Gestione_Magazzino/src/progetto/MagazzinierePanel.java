@@ -3,6 +3,7 @@ package progetto;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,7 @@ import javax.swing.table.TableColumn;
 
 public class MagazzinierePanel  extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	
+	String stato="nessuno";
 	JPanel panel=new JPanel();
 	JPanel panel1=new JPanel();
 	ListSelectionModel cell;
@@ -40,11 +41,12 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	//JButton rifornisci=new JButton("Rifornisci Componente");	non mi devo dimenticare di implementare questa funzione
 	
 	TableModelComp model=new TableModelComp();	//modello di tabella x componente
-	private JTable table=new JTable(model);		//modello di tabella x componente
+	private JTable table=new JTable(model);		//modello di tabella x component
 	TableModelProd model1=new TableModelProd();	//modello di tabella x prodotto
 	private JTable table1=new JTable(model1);	//modello di tabella x prodotto
 	TableModelCREAprod model2=new TableModelCREAprod();	//modello di tabella x creare prodotto
 	private JTable table2=new JTable(model2);	//modello di tabella x creare prodotto
+	Font font = new Font("Arial",Font.BOLD,30);
 	
 	public MagazzinierePanel() throws Exception{
 		model=new TableModelComp();		
@@ -69,6 +71,7 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	        quantità.setPreferredWidth(150);	        
 	        TableColumn descrizione = table.getColumnModel().getColumn(2);
 	        descrizione.setPreferredWidth(150); 
+	        table.setFont(font);
 	        //---
 	        
 	        //--- do i nomi alle colonne della tabella prodotti
@@ -94,8 +97,10 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	        table2.setCellSelectionEnabled(true);
 	        cell=table2.getSelectionModel();
 	        cell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //MULTIPLE_INTERVAL_SELECTION
+	    	
+	    	
 	        cell.addListSelectionListener(new ListSelectionListener() {
-				
+	        
 				@Override
 				public void valueChanged(ListSelectionEvent e) {
 					if(e.getValueIsAdjusting())	// mouse button not released yet
@@ -155,14 +160,25 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==listaP){
+			if(!stato.equals("prodotti")){
+			stato="prodotti";
 			panel1.remove(scroll);
+			try {
+				model1=new TableModelProd();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	//modello di tabella x componente
+			table1=new JTable(model1);	
+			scroll1=new JScrollPane(table1);
+			table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll1);
 			add(panel1,BorderLayout.NORTH);
 			
 			add(panel,BorderLayout.SOUTH);
 			invalidate();
 			validate();
-			
+			}
 		}
 		
 		if(e.getSource()==creaP){				
@@ -175,18 +191,31 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 			validate();
 		}
 		
-		if(e.getSource()==listaC){	
+		if(e.getSource()==listaC){
+			if(!stato.equals("componenti")){
+			stato="componenti";
 			panel1.remove(scroll1);
+			try {
+				model=new TableModelComp();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	//modello di tabella x componente
+			table=new JTable(model);	
+			scroll=new JScrollPane(table);
+			table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll);
 			add(panel1,BorderLayout.NORTH);
 			
 			add(panel,BorderLayout.SOUTH);
 			invalidate();
 			validate();
+			}
 		}
 		
 		if(e.getSource()==aggiungiC){				
-			new AddComponentePanel().setVisible(true);
+			new AddComponentePanel(this).setVisible(true);
+				
 		}
 		if(e.getSource()==creaNP){				
 			
@@ -202,7 +231,45 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 		}
 	}
 	
-	 
+	public void m(){
+		if(stato.equals("componenti")){
+		panel1.remove(scroll);
+		try {
+			model=new TableModelComp();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	//modello di tabella x componente
+		table=new JTable(model);	
+		scroll=new JScrollPane(table);
+		table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+		panel1.add(scroll);
+		add(panel1,BorderLayout.NORTH);
+		
+		add(panel,BorderLayout.SOUTH);
+		invalidate();
+		validate();
+		}
+		if(stato.equals("prodotti")){
+			panel1.remove(scroll1);
+			try {
+				model1=new TableModelProd();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	//modello di tabella x componente
+			table1=new JTable(model1);	
+			scroll1=new JScrollPane(table1);
+			table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+			panel1.add(scroll1);
+			add(panel1,BorderLayout.NORTH);
+			
+			add(panel,BorderLayout.SOUTH);
+			invalidate();
+			validate();
+			}
+		
+	}
 	private ArchivioComponenti comp=new ArchivioComponenti();
 	private ArrayList<String> s=new ArrayList<String>();
 }

@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 public class AddComponentePanel  extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 1L;
-
+	MagazzinierePanel fr;
 	JFrame frame=new JFrame("Aggiungi componente");
 	double size[][] = {{10, 75, 75, 75, 75, 75, 10}, // Columns
             {10, 75, 75, 75, 75, 75, 10}}; // Rows
@@ -38,16 +38,17 @@ public class AddComponentePanel  extends JDialog implements ActionListener{
 	JTextField nome= new JTextField(20);
 	JTextArea descrizione= new JTextArea(4, 20);
 	JTextField quantità= new JTextField(20);
+	JTextField cod= new JTextField(20);
 	
 	JLabel nome1=new JLabel("   Nome   ");
 	JLabel descrizione1=new JLabel("Descrizione");
 	JLabel quantità1=new JLabel("Quantità");
-		
+	JLabel cod1=new JLabel("Codice Materiale");	
 	JButton ok= new JButton("OK");
 	
 	
-	public AddComponentePanel(){
-		
+	public AddComponentePanel(MagazzinierePanel f){
+		fr=f;
 		setSize(500,350);
 		setResizable(false);
 		
@@ -86,6 +87,12 @@ public class AddComponentePanel  extends JDialog implements ActionListener{
 		gbc.gridx=1;
 		gbc.gridy=2;
 		p3.add(quantità,gbc);
+		gbc.gridx=0;
+		gbc.gridy=3;
+		p3.add(cod1,gbc);
+		gbc.gridx=1;
+		gbc.gridy=3;
+		p3.add(cod,gbc);
 		//gbc.gridx=0;
 		//gbc.gridy=3;
 		//p3.add(descrizione,gbc);
@@ -105,13 +112,16 @@ public class AddComponentePanel  extends JDialog implements ActionListener{
 			String nom=(String) nome.getText();
 			String desc=(String) descrizione.getText();
 			String quant=(String) quantità.getText();
+			String codice=(String) cod.getText();
 			int q=Integer.parseInt(quant);
 				try {
-					archivio.addToDatabase(new Componente(nom, desc, q));
+					archivio.addToDatabase(new Componente(nom, desc, q,codice));
 					JOptionPane.showMessageDialog(p3,"Inserimento avvenuto correttamente",
 						    "inserimento corretto",
 						    JOptionPane.INFORMATION_MESSAGE);
 					dispose();
+					fr.m();
+				//	new MagazzinierePanel().setVisible(true);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(p3,"Uno dei campi è vuoto.",
@@ -119,6 +129,7 @@ public class AddComponentePanel  extends JDialog implements ActionListener{
 						    JOptionPane.WARNING_MESSAGE);
 					e1.printStackTrace();
 				}
+				
 				
 		}
 	}

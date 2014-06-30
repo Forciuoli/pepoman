@@ -26,7 +26,7 @@ public class ArchivioProdotti {
 	    	Class.forName("org.sqlite.JDBC");
 	    
 	    	connect = DriverManager
-	          .getConnection("jdbc:sqlite:magazzino2.db");
+	          .getConnection("jdbc:sqlite:magazzino3.db");
 	    	System.out.println("Opened database successfully");
 	       
 	    	statement = connect.createStatement();
@@ -55,7 +55,7 @@ public class ArchivioProdotti {
 			      Class.forName("org.sqlite.JDBC");
 			      // setup the connection with the DB.
 			      connect = DriverManager
-			          .getConnection("jdbc:sqlite:magazzino2.db");
+			          .getConnection("jdbc:sqlite:magazzino3.db");
 
 			      //connect.setAutoCommit(false);
 			      System.out.println("Opened database successfully");

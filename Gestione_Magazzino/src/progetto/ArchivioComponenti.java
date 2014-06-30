@@ -57,20 +57,20 @@ public class ArchivioComponenti {
 		 String nome=a.getNome();
 		 String descrizione=a.getDesc();
 		 int quant=a.getQuant();
-	
+		 String cod=a.getCod();
 	  
 	    try {
 	     
 	    	Class.forName("org.sqlite.JDBC");
 	   
 	      connect = DriverManager
-	          .getConnection("jdbc:sqlite:magazzino2.db");
+	          .getConnection("jdbc:sqlite:magazzino3.db");
 	     
 	      	System.out.println("Opened database successfully");
 	         			     
 		      statement = connect.createStatement();
-		      String sql = "INSERT INTO componenti (nome, descrizione, quant) " +
-		                   "VALUES ('"+nome+"', '"+descrizione+"', "+quant+");"; 
+		      String sql = "INSERT INTO componenti (nome, descrizione, quant,cod_materiale) " +
+		                   "VALUES ('"+nome+"', '"+descrizione+"', "+quant+", '"+cod+"');"; 
 		      
 		      statement.executeUpdate(sql);
 			      
@@ -110,13 +110,13 @@ public class ArchivioComponenti {
 		      Class.forName("org.sqlite.JDBC");
 		      // setup the connection with the DB.
 		      connect = DriverManager
-		          .getConnection("jdbc:sqlite:magazzino2.db");
+		          .getConnection("jdbc:sqlite:magazzino3.db");
 
 		      //connect.setAutoCommit(false);
 		      System.out.println("Opened database successfully");
 		      // statements allow to issue SQL queries to the database
 		      statement = connect.createStatement();
-		      resultSet=statement.executeQuery("select nome,descrizione,quant from componenti;");
+		      resultSet=statement.executeQuery("select nome,descrizione,quant,cod_materiale from componenti;");
 		      //resultSet = statement.getResultSet();
 		      
 		      while (resultSet.next()) {
@@ -126,9 +126,10 @@ public class ArchivioComponenti {
 		    	  String nom1 = resultSet.getString("nome");
 		          String  desc1 = resultSet.getString("descrizione");
 		          int quant1  = resultSet.getInt("quant");
+		          String cod  = resultSet.getString("cod_materiale");
 	                
-	               System.out.println(nom1+", "+desc1+", "+quant1+"\n");
-	                stringa = nom1+"/"+desc1+"/"+quant1;
+	               System.out.println(nom1+", "+desc1+", "+quant1+","+cod);
+	                stringa = nom1+"/"+desc1+"/"+quant1+"/"+cod;
 	                a.add(stringa);
 	                
 	            }
@@ -157,7 +158,7 @@ public class ArchivioComponenti {
 			  Class.forName("org.sqlite.JDBC");
 			// setup the connection with the DB.
 		      connect = DriverManager
-		          .getConnection("jdbc:sqlite:magazzino2.db");
+		          .getConnection("jdbc:sqlite:magazzino3.db");
 
 		      //connect.setAutoCommit(false);
 		      System.out.println("Opened database successfully");
