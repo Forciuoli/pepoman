@@ -55,7 +55,7 @@ public  class TableModel extends AbstractTableModel{
 				}
 				
 		}
-		System.out.println(stringaId);
+		System.out.println("dsdasdas  "+stringaId);
 		return stringaId;
 	}
 	 

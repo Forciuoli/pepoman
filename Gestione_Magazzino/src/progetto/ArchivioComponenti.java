@@ -18,7 +18,7 @@ public class ArchivioComponenti {
 	private ResultSet resultSet;
 	private String stringa="";
 	private ArrayList<String> a=new ArrayList<String>();
-	
+	private int res1;
 	
 	
 	
@@ -152,7 +152,53 @@ public class ArchivioComponenti {
 	  //SET ContactName='Alfred Schmidt', City='Hamburg'
 	  //WHERE CustomerName='Alfreds Futterkiste';
 	  
-	  public void aggiornaQuantità(String no,int q) throws Exception{
+	//metodo che incrementa le quantità delle componenti (rifornisci)
+	  public void aggiungiQuantità(String no,int q) throws Exception{
+		  try {
+		      // this will load the MySQL driver, each DB has its own driver
+			  Class.forName("org.sqlite.JDBC");
+			// setup the connection with the DB.
+		      connect = DriverManager
+		          .getConnection("jdbc:sqlite:magazzino3.db");
+		      //connect.setAutoCommit(false);
+		      System.out.println("Opened database successfully");
+		      // statements allow to issue SQL queries to the database
+		      statement = connect.createStatement();
+		      resultSet=statement.executeQuery("select quant from componenti where nome='"+no+"';");
+		           
+		      
+		      
+		      while (resultSet.next()) {
+		    	   int qu = resultSet.getInt("quant");
+	                               
+	               System.out.println(qu+" ");
+	               res1=qu+q;
+	                
+	                
+	            }
+		      statement.close();	      
+		      connect.close();
+		      // this will load the MySQL driver, each DB has its own driver
+			  Class.forName("org.sqlite.JDBC");
+			// setup the connection with the DB.
+		      Connection connect1 = DriverManager
+		          .getConnection("jdbc:sqlite:magazzino3.db");
+		      //connect.setAutoCommit(false);
+		      System.out.println("Opened database successfully");
+		      // statements allow to issue SQL queries to the database
+		      Statement statement1 = connect1.createStatement();
+		     statement1.executeUpdate("update componenti set quant="+res1+" where nome='"+no+"';");
+		     System.out.println(res1+" ");
+		      
+		  }catch(Exception e){
+			  System.out.println("errore select in 'aggiorna quantità' dal database componenti");
+			  e.printStackTrace();
+			
+		  }
+	    }
+	  
+	//decrementa quantità. la uso quando creo un prodotto
+	  public String decrementaQuantità(String id,int q) throws Exception{
 		  try {
 		      // this will load the MySQL driver, each DB has its own driver
 			  Class.forName("org.sqlite.JDBC");
@@ -164,40 +210,70 @@ public class ArchivioComponenti {
 		      System.out.println("Opened database successfully");
 		      // statements allow to issue SQL queries to the database
 		      statement = connect.createStatement();
-		      resultSet=statement.executeQuery("select quant from componenti where id='"+no+"';");
-		     	      
+		      resultSet=statement.executeQuery("select quant,nome from componenti where id='"+id+"';");          
+		      
+		      int qu=0;
+		      String nome=null;
 		      while (resultSet.next()) {
-		    	  //il numero nel getString indica la colonna a cui fare riferimento; 1=nome, 2=descrizione, 3=quantità
-		    	  //si fa rifrimento alla tabella generata dalla query
+		    	 qu = resultSet.getInt("quant");
+		    	 nome=resultSet.getString("nome");
+		    	 //controlla se ci sono sufficienti componenti
 		    	  
-	                int qu = resultSet.getInt("quant");
-	                               
-	               System.out.println(qu+" ");
-	                int res=qu-q;
-	                
+		               System.out.println(qu+" ");		               
 	                
 	            }
+		    	   statement.close();	      
+				   connect.close();
+		      if(qu>15){
+		    	  res1=qu-q;
+		    	// this will load the MySQL driver, each DB has its own driver
+				  Class.forName("org.sqlite.JDBC");
+				// setup the connection with the DB.
+			      Connection connect1 = DriverManager
+			          .getConnection("jdbc:sqlite:magazzino3.db");
+
+			      //connect.setAutoCommit(false);
+			      System.out.println("Opened database successfully");
+			      // statements allow to issue SQL queries to the database
+			      Statement statement1 = connect1.createStatement();
+			      
+			      //**controllare se id deve essere stringa o int**
+			     statement1.executeUpdate("update componenti set quant="+res1+" where id='"+id+"';");
+			     System.out.println(res1+" ");
+			     
+			     //***fare un if. se ritorna ok allora ci sono componenti a sufficienza, se ritorna
+			     // qualcosa di diverso bisogna prendere il valore (nome) e stampare a video quale 
+			     //prodotto stà x finire*****
+			     
+			     return "ok";
+	    	   }else{
+	    		   System.out.println(nome);
+	    		   return nome;
+	    	   }
+		      
+		    
+		      
 		      
 		  }catch(Exception e){
 			  System.out.println("errore select in 'aggiorna quantità' dal database componenti");
-			  
+			  e.printStackTrace();
+			  return "errore";
 			
 		  }
 	    }
-	  
-	  
 	//restituisce arraylist cn gli id dei componenti
 	  public String selectIdComp(String no) throws Exception{
 		  try {
-		      // this will load the MySQL driver, each DB has its own driver
-		      Class.forName("com.mysql.jdbc.Driver");
-		      // setup the connection with the DB.
+			  // this will load the MySQL driver, each DB has its own driver
+			  Class.forName("org.sqlite.JDBC");
+			// setup the connection with the DB.
 		      connect = DriverManager
-		          .getConnection("jdbc:mysql://localhost/magazzino?"+"user=root&password=");
+		          .getConnection("jdbc:sqlite:magazzino3.db");
+
 
 		      // statements allow to issue SQL queries to the database
 		      statement = connect.createStatement();
-		      statement.execute("select id from componenti where nome='"+no+"'");
+		      statement.execute("select id from componenti where nome='"+no+"';");
 		      resultSet = statement.getResultSet();
 		      
 		      while (resultSet.next()) {

@@ -89,12 +89,6 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	        //---
 //****/*	      
 	        //--- do i nomi alle colonne della tabella prodotti
-	        TableColumn nomecP = table2.getColumnModel().getColumn(1);
-	        nomecP.setPreferredWidth(150);
-	        TableColumn quantitàcP = table2.getColumnModel().getColumn(2);
-	        quantitàcP.setPreferredWidth(150);	        
-	        TableColumn descrizionecP = table2.getColumnModel().getColumn(3);
-	        descrizionecP.setPreferredWidth(150); 
 	        //---
 	        
 	        
@@ -165,41 +159,158 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==listaP){
-			if(!stato.equals("prodotti")){
-			stato="prodotti";
+			if(stato.equals("nessuno")){
+				stato="prodotti";
+				try {
+					model1=new TableModelProd();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//modello di tabella x componente
+				table1=new JTable(model1);	
+				table1.setFont(new Font("Arial", Font.PLAIN, 15));
+				table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+				scroll1=new JScrollPane(table1);
+				table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+				panel1.add(scroll1);
+				add(panel1,BorderLayout.NORTH);
+				
+				add(panel,BorderLayout.SOUTH);
+				invalidate();
+				validate();
+				}
+			if(!stato.equals("prodotti") && stato.equals("componenti")){
+				stato="prodotti";
+				panel1.remove(scroll);
+				try {
+					model1=new TableModelProd();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//modello di tabella x componente
+				table1=new JTable(model1);	
+				table1.setFont(new Font("Arial", Font.PLAIN, 15));
+				table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+				scroll1=new JScrollPane(table1);
+				table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+				panel1.add(scroll1);
+				add(panel1,BorderLayout.NORTH);
+				
+				add(panel,BorderLayout.SOUTH);
+				invalidate();
+				validate();
+				}
+				if(!stato.equals("prodotti") && stato.equals("nuovo")){
+					stato="prodotti";
+					panel1.remove(scroll2);
+					try {
+						model1=new TableModelProd();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	//modello di tabella x componente
+					table1=new JTable(model1);	
+					table1.setFont(new Font("Arial", Font.PLAIN, 15));
+					table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+					scroll1=new JScrollPane(table1);
+					table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+					panel1.add(scroll1);
+					add(panel1,BorderLayout.NORTH);
+					
+					add(panel,BorderLayout.SOUTH);
+					invalidate();
+					validate();
+					}
+		}
+		
+		if(e.getSource()==creaP){
+			if(stato.equals("nessuno")){
+				stato="nuovo";
+				try {
+					model2=new TableModelCREAprod();	
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//modello di tabella x componente
+				table2=new JTable(model2);	
+				table2.setFont(new Font("Arial", Font.PLAIN, 15));
+				table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+				scroll2=new JScrollPane(table2);
+				table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+				panel1.add(scroll2);
+				add(panel1,BorderLayout.NORTH);
+				
+				add(panel,BorderLayout.SOUTH);
+				invalidate();
+				validate();
+				}
+			if(!stato.equals("nuovo") && stato.equals("componenti")){
+			stato="nuovo";
 			panel1.remove(scroll);
 			try {
-				model1=new TableModelProd();
+				model2=new TableModelCREAprod();	
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}	//modello di tabella x componente
-			table1=new JTable(model1);	
-			table1.setFont(new Font("Arial", Font.PLAIN, 15));
-			table1.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
-			scroll1=new JScrollPane(table1);
-			table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
-			panel1.add(scroll1);
-			add(panel1,BorderLayout.NORTH);
-			
-			add(panel,BorderLayout.SOUTH);
-			invalidate();
-			validate();
-			}
-		}
-		
-		if(e.getSource()==creaP){				
-			//panel1.remove(scroll);
+			table2=new JTable(model2);	
+			table2.setFont(new Font("Arial", Font.PLAIN, 15));
+			table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+			scroll2=new JScrollPane(table2);
+			table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll2);
 			add(panel1,BorderLayout.NORTH);
 			
 			add(panel,BorderLayout.SOUTH);
 			invalidate();
 			validate();
+			}
+			if(!stato.equals("nuovo") && stato.equals("prodotti")){
+				stato="nuovo";
+				panel1.remove(scroll1);
+				try {
+					model2=new TableModelCREAprod();	
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//modello di tabella x componente
+				table2=new JTable(model2);	
+				table2.setFont(new Font("Arial", Font.PLAIN, 15));
+				table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+				scroll2=new JScrollPane(table2);
+				table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+				panel1.add(scroll2);
+				add(panel1,BorderLayout.NORTH);
+				
+				add(panel,BorderLayout.SOUTH);
+				invalidate();
+				validate();
+				}
+			
 		}
 		
 		if(e.getSource()==listaC){
-			if(!stato.equals("componenti")){
+			if(stato.equals("nessuno")){
+				stato="componenti";
+				try {
+					model=new TableModelComp();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//modello di tabella x componente
+				table=new JTable(model);
+				table.setFont(new Font("Arial", Font.PLAIN, 15));
+				table.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+				scroll=new JScrollPane(table);
+				table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+				panel1.add(scroll);
+				add(panel1,BorderLayout.NORTH);
+				
+				add(panel,BorderLayout.SOUTH);
+				invalidate();
+				validate();
+				}
+			if(!stato.equals("componenti") && stato.equals("prodotti")){
 			stato="componenti";
 			panel1.remove(scroll1);
 			try {
@@ -220,6 +331,27 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 			invalidate();
 			validate();
 			}
+			if(!stato.equals("componenti") && stato.equals("nuovo")){
+				stato="componenti";
+				panel1.remove(scroll2);
+				try {
+					model=new TableModelComp();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	//modello di tabella x componente
+				table=new JTable(model);
+				table.setFont(new Font("Arial", Font.PLAIN, 15));
+				table.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+				scroll=new JScrollPane(table);
+				table.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+				panel1.add(scroll);
+				add(panel1,BorderLayout.NORTH);
+				
+				add(panel,BorderLayout.SOUTH);
+				invalidate();
+				validate();
+				}
 		}
 		
 		if(e.getSource()==aggiungiC){				
@@ -275,6 +407,26 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 			scroll1=new JScrollPane(table1);
 			table1.setPreferredScrollableViewportSize(new Dimension(1000, 500));
 			panel1.add(scroll1);
+			add(panel1,BorderLayout.NORTH);
+			
+			add(panel,BorderLayout.SOUTH);
+			invalidate();
+			validate();
+			}
+		if(stato.equals("nuovo")){
+			panel1.remove(scroll2);
+			try {
+				model2=new TableModelCREAprod();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	//modello di tabella x componente
+			table2=new JTable(model2);	
+			table2.setFont(new Font("Arial", Font.PLAIN, 15));
+			table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
+			scroll2=new JScrollPane(table2);
+			table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
+			panel1.add(scroll2);
 			add(panel1,BorderLayout.NORTH);
 			
 			add(panel,BorderLayout.SOUTH);
