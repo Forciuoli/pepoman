@@ -59,7 +59,7 @@ public class Tester {
 		    }
 		    System.out.println("Table prodotti created successfully");*/
 	   	
-		   
+		   //CAZZZZZZZZZ
 		    
 		MagazzinierePanel magazzinierePanel=new MagazzinierePanel();
 		magazzinierePanel.setVisible(true);
