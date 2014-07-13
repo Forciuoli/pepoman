@@ -47,7 +47,8 @@ public class Tester {
 		                   "(id INTEGER PRIMARY KEY   AUTOINCREMENT," +
 		                   " nome           varchar(50)  NOT NULL, " + 
 		                   " descrizione    varchar(500) NOT NULL, " + 
-		                   " componenti     varchar(500) NOT NULL " + 
+		                   " componenti     varchar(500) NOT NULL, " + 
+		                   " quantità     int(20) NOT NULL " + 
 		                   " )"; 
 		      stmt.executeUpdate(sql);
 		      stmt.close();

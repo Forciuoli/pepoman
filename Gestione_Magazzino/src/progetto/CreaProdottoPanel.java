@@ -29,7 +29,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.DefaultCellEditor;
 
 	
-public class ProdottoPanel extends JFrame implements ActionListener{
+public class CreaProdottoPanel extends JFrame implements ActionListener{
 	private static GraphicsConfiguration guiFrame;
 	 MagazzinierePanel fr;
      JPanel tablepanel=new JPanel();
@@ -40,9 +40,9 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 	 JTextField nome= new JTextField(20);
 	 JTextArea descrizione= new JTextArea(4, 20);
  
-     JButton ok=new JButton("ok");
+     JButton ok=new JButton("Crea");
      
-	    public ProdottoPanel(MagazzinierePanel f) throws Exception
+	    public CreaProdottoPanel(MagazzinierePanel f) throws Exception
 	    {	
 	    	super(guiFrame);
 	    	fr=f;
@@ -63,7 +63,7 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 				public void valueChanged(ListSelectionEvent e) {
 					if(e.getValueIsAdjusting())	// mouse button not released yet
 						return;
-					TableModel d=(TableModel) table.getModel();
+					TableModelCREAprod d=(TableModelCREAprod) table.getModel();
 					
 					int row = table.getSelectedRow();
 					if(row < 0)				// true when clearSelection
@@ -83,7 +83,7 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 					if(riga==true && col==0){
 						table.getModel().setValueAt(false, row, 0);
 					}
-					//cell.clearSelection();
+					
 					table.clearSelection();
 					repaint();
 					
@@ -115,10 +115,6 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 	        
 	        ok.addActionListener(this);
 	        panel1.add(ok);
-	        panel.add(nome1);
-	        panel.add(this.nome);
-	        panel.add(descrizione1);
-	        panel.add(this.descrizione);
 	        
 	        tablepanel.add(tableScrollPane);
 	        
@@ -138,7 +134,6 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 				String nom=(String) nome.getText();
 				String desc=(String) descrizione.getText();
 				try {
-					
 					stringaId=model.getSelezionati();
 				} catch (Exception e2) {
 					// TODO Auto-generated catch block
@@ -146,10 +141,15 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 				}
 				
 				try {
-					prod.addToDatabaseProd(new Prodotto(nom, desc, stringaId));
+					String mess=prod.addProd(stringaId);
+					if(mess.equals(""))
 					JOptionPane.showMessageDialog(panel,"Inserimento avvenuto correttamente",
 						    "inserimento corretto",
 						    JOptionPane.INFORMATION_MESSAGE);
+					else
+						JOptionPane.showMessageDialog(panel,mess,
+							    "inserimento non corretto",
+							    JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 					fr.m();
 				} catch (Exception e1) {
@@ -164,7 +164,7 @@ public class ProdottoPanel extends JFrame implements ActionListener{
 			
 		}
 	   
-	    TableModel model=new TableModel();
+		TableModelCREAprod model=new TableModelCREAprod();
 	    private JTable table=new JTable(model);
 	    ListSelectionModel cell;
 	    private ArrayList<String> id;

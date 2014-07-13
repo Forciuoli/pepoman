@@ -21,6 +21,7 @@ public class TableModelCREAprod extends AbstractTableModel{
 		  data[i][1]=arr[0];
 		  data[i][2]=arr[1];
 		  data[i][3]=arr[2];
+		  data[i][4]="";
 		  
 	}
 	
@@ -37,24 +38,21 @@ public class TableModelCREAprod extends AbstractTableModel{
 	}
     
 	public String getSelezionati() throws Exception{
+		String app="";
 		for(int i=0;i<c.size();i++){	
 			//System.out.println(i+" fanculo ");
 				boolean str=(boolean) getValueAt(i, 0);
+				
 				//String quant=(String) getValueAt(i, 3);// in questa variabile c'è il quantitativo inserito dell'utente
 				if(str==true){
 						String str1=(String) getValueAt(i, 1);
-						
-					
-							stringaId+=comp.selectIdComp(str1)+"/";
-						
-						//System.out.println(str1+"nome ");
-						//System.out.println(cacca+" caccaaaaaaa");
-						
+						String quant=(String) getValueAt(i, 4);
+				    	app=quant+"&"+str1;						
 				}
 				
 		}
-		System.out.println(stringaId);
-		return stringaId;
+		System.out.println(app);
+		return app;
 	}
 	 
     @Override
@@ -112,12 +110,12 @@ public class TableModelCREAprod extends AbstractTableModel{
     }
     
 	
-private Object[][] data=new Object[1000][4];
+private Object[][] data=new Object[1000][5];
 private ArrayList<String> c;
 private ArrayList<String> id;
 private String stringaId="";
 private ArchivioProdotti prod=new ArchivioProdotti();
-private String[] columnNames = {"", "Nome", "Descrizione", "Componenti" };
+private String[] columnNames = {"", "Nome", "Descrizione", "Componenti", "Quantità"};
 private ArchivioComponenti comp=new ArchivioComponenti();
 } 
 

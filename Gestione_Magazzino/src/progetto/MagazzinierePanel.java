@@ -224,68 +224,12 @@ public class MagazzinierePanel  extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource()==creaP){
-			if(stato.equals("nessuno")){
-				stato="nuovo";
-				try {
-					model2=new TableModelCREAprod();	
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	//modello di tabella x componente
-				table2=new JTable(model2);	
-				table2.setFont(new Font("Arial", Font.PLAIN, 15));
-				table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
-				scroll2=new JScrollPane(table2);
-				table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
-				panel1.add(scroll2);
-				add(panel1,BorderLayout.NORTH);
-				
-				add(panel,BorderLayout.SOUTH);
-				invalidate();
-				validate();
-				}
-			if(!stato.equals("nuovo") && stato.equals("componenti")){
-			stato="nuovo";
-			panel1.remove(scroll);
 			try {
-				model2=new TableModelCREAprod();	
+				new CreaProdottoPanel(this).setVisible(true);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}	//modello di tabella x componente
-			table2=new JTable(model2);	
-			table2.setFont(new Font("Arial", Font.PLAIN, 15));
-			table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
-			scroll2=new JScrollPane(table2);
-			table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
-			panel1.add(scroll2);
-			add(panel1,BorderLayout.NORTH);
-			
-			add(panel,BorderLayout.SOUTH);
-			invalidate();
-			validate();
 			}
-			if(!stato.equals("nuovo") && stato.equals("prodotti")){
-				stato="nuovo";
-				panel1.remove(scroll1);
-				try {
-					model2=new TableModelCREAprod();	
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	//modello di tabella x componente
-				table2=new JTable(model2);	
-				table2.setFont(new Font("Arial", Font.PLAIN, 15));
-				table2.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 15));
-				scroll2=new JScrollPane(table2);
-				table2.setPreferredScrollableViewportSize(new Dimension(1000, 500));
-				panel1.add(scroll2);
-				add(panel1,BorderLayout.NORTH);
-				
-				add(panel,BorderLayout.SOUTH);
-				invalidate();
-				validate();
-				}
 			
 		}
 		

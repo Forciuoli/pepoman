@@ -294,4 +294,28 @@ public class ArchivioComponenti {
 			
 		  }
 	    }
+	  
+	//metodo che elimina il componente 
+	  public void EliminaCompo(String no) throws Exception{
+		  try {
+		      // this will load the MySQL driver, each DB has its own driver
+			  Class.forName("org.sqlite.JDBC");
+			// setup the connection with the DB.
+		      connect = DriverManager
+		          .getConnection("jdbc:sqlite:magazzino3.db");
+		      //connect.setAutoCommit(false);
+		      System.out.println("Opened database successfully");
+		      // statements allow to issue SQL queries to the database
+		      statement = connect.createStatement();
+		      statement.executeUpdate("delete from componenti where nome='"+no+"';");
+		      System.out.println("componente eliminato correttamente");
+		      statement.close();	      
+		      connect.close();
+		      
+		  }catch(Exception e){
+			  System.out.println("errore select in 'elimina componente' dal database componenti");
+			  e.printStackTrace();
+			
+		  }
+	    }
 }	

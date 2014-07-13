@@ -20,6 +20,7 @@ public class TableModelProd extends AbstractTableModel{
 				  data[i][0]=arr[0];
 				  data[i][1]=arr[1];
 				  data[i][2]=arr[2];
+				  data[i][3]=arr[3];
 				  
 			}
 			
@@ -45,7 +46,7 @@ public class TableModelProd extends AbstractTableModel{
 			
 	private Object[][] data=new Object[1000][4];
 	private ArrayList<String> c;
-	private String[] columnNames = {"Nome", "Descrizione", "Componenti" };
+	private String[] columnNames = {"Nome", "Descrizione", "Componenti", "Quantità" };
 	private ArchivioProdotti comp=new ArchivioProdotti();
 	
 }

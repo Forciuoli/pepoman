@@ -41,14 +41,16 @@ public  class TableModel extends AbstractTableModel{
 	public String getSelezionati() throws Exception{
 		for(int i=0;i<c.size();i++){	
 			//System.out.println(i+" fanculo ");
+			    String app="";
 				boolean str=(boolean) getValueAt(i, 0);
-				String quant=(String) getValueAt(i, 3);// in questa variabile c'è il quantitativo inserito dell'utente
+				// in questa variabile c'è il quantitativo inserito dell'utente
 				if(str==true){
 						String str1=(String) getValueAt(i, 1);
-						
-					
-							stringaId+=comp.selectIdComp(str1)+"/";
-						
+						String quant=(String) getValueAt(i, 3);
+					    	app=quant+"&"+comp.selectIdComp(str1);
+					    	System.out.println("weeeee"+app);
+							stringaId+=app+"/";
+						    app="";
 						//System.out.println(str1+"nome ");
 						//System.out.println(cacca+" caccaaaaaaa");
 						
