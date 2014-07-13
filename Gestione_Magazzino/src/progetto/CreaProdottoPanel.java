@@ -52,7 +52,7 @@ public class CreaProdottoPanel extends JFrame implements ActionListener{
 	        //This will center the JFrame in the middle of the screen
 	        setLocationRelativeTo(null);
 	        
-	        //******SELEZIONO LA CELLA******
+	        //*****SELEZIONO LA CELLA*****
 	        table.setCellSelectionEnabled(true);
 	        table.setRowSorter(null);
 	        cell=table.getSelectionModel();
